@@ -19,7 +19,7 @@ class DriverCreateForm(UserCreationForm):
 
     def clean_license_number(self):
         license_number = self.cleaned_data["license_number"]
-        if check_licence_number(license_number):
+        if check_license_number(license_number):
             return license_number
         raise ValidationError("Invalid license number")
 
@@ -31,12 +31,12 @@ class DriverLicenseUpdateForm(forms.ModelForm):
 
     def clean_license_number(self):
         license_number = self.cleaned_data["license_number"]
-        if check_licence_number(license_number):
+        if check_license_number(license_number):
             return license_number
         raise ValidationError("Invalid license number")
 
 
-def check_licence_number(license_number) -> bool:
+def check_license_number(license_number) -> bool:
     if (
         len(license_number) == 8
         and license_number[:3].isupper()
